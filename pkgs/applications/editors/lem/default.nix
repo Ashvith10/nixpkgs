@@ -1,13 +1,43 @@
 {
-  pkgs,
-  lib,
-  stdenv,
-  fetchFromGitHub
+  pkgs ? import ../../../../. {},
+  lib ? pkgs.lib,
+  stdenv ? pkgs.stdenv,
+  fetchFromGitHub ? pkgs.fetchFromGitHub
 }:
 stdenv.mkDerivation rec {
   pname = "lem";
   version = "2.1.0";
+  src = ./lem;
 
+  # src = fetchFromGitHub {
+    # owner = "lem-project";
+    # repo = pname;
+    # rev = "v${version}";
+    # sha256 = "1bjm6z33n1ksjvqs5v1g1mz4f8bsx1lka85sspmlnsbswwap58k0";
+  # };
+
+  sbcl' = pkgs.sbcl.withPackages (ps: with ps; [
+    quick-patch
+    external-program
+    log4cl
+    esrap
+    cl-charms
+    # (cl-charms.overrideLispAttrs (o: {
+      # nativeLibs = [ pkgs.ncurses ];
+    # }))
+  ]);
+  
+  nativeBuildInputs = [ sbcl' ];
+  
+  buildPhase = ''
+    ${sbcl'}/bin/sbcl \
+    --load scripts/patch-build-ncurses.lisp
+  '';
+
+  installPhase = ''
+    echo "TODO: Install phase jobs..."
+  '';
+  
   meta = with lib; {
     description = "Common Lisp editor/IDE with high expansibility";
     longDescription = ''
@@ -29,27 +59,4 @@ stdenv.mkDerivation rec {
     license = with licenses; [ mit ];
     platforms = platforms.unix;
   };
-
-  src = fetchFromGitHub {
-    owner = "lem-project";
-    repo = pname;
-    rev = "v${version}";
-    sha256 = "1bjm6z33n1ksjvqs5v1g1mz4f8bsx1lka85sspmlnsbswwap58k0";
-  };
-
-  sbcl' = pkgs.sbcl.withPackages (ps: with ps; [
-    quick-patch
-    ncurses-clone-for-lem
-  ]);
-  
-  nativeBuildInputs = [ sbcl' ];
-  
-  buildPhase = ''
-    ${sbcl'}/bin/sbcl \
-    --load scripts/patch-build-ncurses.lisp
-  '';
-
-  installPhase = ''
-    echo "TODO: Install phase jobs..."
-  '';
 }
