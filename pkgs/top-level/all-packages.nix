@@ -2877,6 +2877,8 @@ with pkgs;
 
   shfm = callPackage ../applications/file-managers/shfm { };
 
+  skiff-desktop = callPackage ../applications/networking/mailreaders/skiff-desktop { };
+
   spaceFM = callPackage ../applications/file-managers/spacefm { };
 
   tuifimanager = callPackage ../applications/file-managers/tuifimanager { };
@@ -22768,6 +22770,8 @@ with pkgs;
 
   libgxps = callPackage ../development/libraries/libgxps { };
 
+  libhelium = callPackage ../development/libraries/libhelium { };
+
   libiio = callPackage ../development/libraries/libiio {
     inherit (darwin.apple_sdk.frameworks) CFNetwork CoreServices;
     python = python3;
@@ -30060,6 +30064,10 @@ with pkgs;
     gtk = res.gtk2;
   };
 
+  tau-hydrogen-icon-theme = callPackage ../data/icons/tau-hydrogen-icon-theme { };
+  
+  tau-helium-gtk-theme = callPackage ../data/themes/tau-helium-gtk-theme { };
+
   theme-jade1 = callPackage ../data/themes/jade1 { };
 
   theme-obsidian2 = callPackage ../data/themes/obsidian2 { };
@@ -30550,6 +30558,8 @@ with pkgs;
   joincap = callPackage ../tools/security/joincap { };
 
   json-plot = callPackage ../applications/graphics/json-plot { };
+  
+  libbismuth = callPackage ../development/libraries/libbismuth { };
 
   libbitcoin = callPackage ../tools/misc/libbitcoin/libbitcoin.nix {
     boost = boost175; # fatal error: 'boost/interprocess/detail/posix_time_types_wrk.hpp' file not found
