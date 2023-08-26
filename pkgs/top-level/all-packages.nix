@@ -2877,6 +2877,8 @@ with pkgs;
 
   shfm = callPackage ../applications/file-managers/shfm { };
 
+  skiff-desktop = callPackage ../applications/networking/mailreaders/skiff-desktop { };
+
   spaceFM = callPackage ../applications/file-managers/spacefm { };
 
   tuifimanager = callPackage ../applications/file-managers/tuifimanager { };
