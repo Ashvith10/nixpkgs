@@ -22768,6 +22768,8 @@ with pkgs;
 
   libgxps = callPackage ../development/libraries/libgxps { };
 
+  libhelium = callPackage ../development/libraries/libhelium { };
+
   libiio = callPackage ../development/libraries/libiio {
     inherit (darwin.apple_sdk.frameworks) CFNetwork CoreServices;
     python = python3;
