@@ -30551,6 +30551,8 @@ with pkgs;
 
   json-plot = callPackage ../applications/graphics/json-plot { };
 
+  libbismuth = callPackage ../development/libraries/libbismuth { };
+
   libbitcoin = callPackage ../tools/misc/libbitcoin/libbitcoin.nix {
     boost = boost175; # fatal error: 'boost/interprocess/detail/posix_time_types_wrk.hpp' file not found
   };
