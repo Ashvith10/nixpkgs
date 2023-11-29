@@ -15768,6 +15768,8 @@ with pkgs;
     crystal;
 
   crystal2nix = callPackage ../development/compilers/crystal2nix { };
+  
+  rebol3 = callPackage ../development/interpreters/rebol3 { };
 
   crystalline = callPackage ../development/tools/language-servers/crystalline {
     llvmPackages = llvmPackages_15;
